@@ -8,7 +8,7 @@ type PropsType = {
   maximum?: number,
   rating?: number,
   spacing?: number,
-  onChangeValue: (index: number) => {},
+  onChangeValue: (index: number) => any,
   renderItem: any => any,
   containerStyle?: Object,
 };
