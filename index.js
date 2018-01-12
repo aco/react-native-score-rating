@@ -41,7 +41,7 @@ export default class ScoreRating extends Component<PropsType, *> {
       });
   };
 
-  _enableScroll = () =>
+  _onChangeFinish = () =>
     this.props.onChangeFinish && this.props.onChangeFinish();
 
   _updateChangeValue = (evt: Object) => {
@@ -84,7 +84,7 @@ export default class ScoreRating extends Component<PropsType, *> {
         onLayout={this.onLayout}
         onStartShouldSetResponder={this._onShouldSetResponder}
         onMoveShouldSetResponder={this._onShouldSetResponder}
-        onResponderRelease={this._enableScroll}
+        onResponderRelease={this._onChangeFinish}
         onResponderGrant={this._updateChangeValue}
         onResponderMove={this._updateChangeValue}
       >
