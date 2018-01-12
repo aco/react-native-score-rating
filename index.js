@@ -48,7 +48,7 @@ export default class ScoreRating extends Component<PropsType, *> {
     const x = evt.nativeEvent.pageX - this.state.scoreX;
     const propotion = x / this.state.scoreWidth;
 
-    let rating = Math.ceil(5 * propotion);
+    let rating = Math.ceil(+this.props.maximum * propotion);
 
     if (rating < 0) rating = 0;
     else if (rating > this.state.maximum) rating = this.state.maximum;
