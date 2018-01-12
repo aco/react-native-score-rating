@@ -66,16 +66,13 @@ Note: Text is a custom component to demonstrate coloring. You have absolute cont
 
 ## Props
 
-| Name           |                       Description                        |                                Default |
-| :------------- | :------------------------------------------------------: | -------------------------------------: |
-| rating         |                      Current score                       |                                      0 |
-| maximum        |               Maximum rating/"star count"                |                                      5 |
-| spacing        |             Spacing between each component\*             |                                     10 |
-| onChangeValue  | Func:bool=>JSX to render a single score/rating component | Not supplied - requires implementation |
-| onChangeFinish |                     Func:() => void                      | Not supplied - requires implementation |
-| rating         |                      Current score                       |                                      0 |
-| rating         |                      Current score                       |                                      0 |
-| rating         |                      Current score                       |                                      0 |
+| Name           |                            Description                             |                                Default |
+| :------------- | :----------------------------------------------------------------: | -------------------------------------: |
+| rating         |                           Current score                            |                                      0 |
+| maximum        |                    Maximum rating/"star count"                     |                                      5 |
+| spacing        |                  Spacing between each component\*                  |                                     10 |
+| onChangeValue  |      Func:bool=>JSX to render a single score/rating component      | Not supplied - requires implementation |
+| onChangeFinish | Func:() => void for triggering event after score is finaly changed | Not supplied - requires implementation |
 
 \* Spacing is applied as a right margin of all inner ratings.
 
