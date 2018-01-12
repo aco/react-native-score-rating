@@ -12,6 +12,12 @@ The component responds to drags and not just clicks, icon boundaries are compute
 npm i -S react-native-score-rating
 ```
 
+or
+
+```sh
+yarn add react-native-score-rating
+```
+
 Component is entirely JS, no linking required.
 
 ## Demo
