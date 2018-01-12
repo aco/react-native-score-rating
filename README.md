@@ -23,38 +23,39 @@ Component is entirely JS, no linking required.
 ```js
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 
 import ScoreRating from 'react-native-score-rating';
 
 export class Demo extends React.Component {
   state = {
     value: 2,
-    scrollEnabled: true
+    scrollEnabled: true,
   };
 
   render() {
     return (
-      <ScrollView
-        scrollEnabled={this.state.scrollEnabled}
+      <View
         style={{
           flex: 1,
           justifyContent: 'center',
         }}
       >
-        <ScoreRating
-          rating={this.state.value}
-          maximum={5}
-          onChangeValue={value =>
-            this.setState({scrollEnabled: false, value})
-          }
-          onChangeFinish={() => this.setState({scrollEnabled: true})}
-          renderItem={active => (
-            <Text color={active ? Colors.yellow20 : Colors.dark20} icon>
-              {Icons.star}
-            </Text>
-          )}
-        />
+        <ScrollView scrollEnabled={this.state.scrollEnabled}>
+          <ScoreRating
+            rating={this.state.value}
+            maximum={5}
+            onChangeValue={value =>
+              this.setState({ scrollEnabled: false, value })
+            }
+            onChangeFinish={() => this.setState({ scrollEnabled: true })}
+            renderItem={active => (
+              <Text color={active ? Colors.yellow20 : Colors.dark20} icon>
+                {Icons.star}
+              </Text>
+            )}
+          />
+        </ScrollView>
       </View>
     );
   }
