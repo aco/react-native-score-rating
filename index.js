@@ -9,6 +9,7 @@ type PropsType = {
   rating?: number,
   spacing?: number,
   onChangeValue: (index: number) => any,
+  onChangeFinish?: () => void,
   renderItem: any => any,
   containerStyle?: Object,
 };
@@ -31,9 +32,7 @@ export default class ScoreRating extends Component<PropsType, *> {
     };
   }
 
-  _onShouldSetResponder() {
-    return true;
-  }
+  _onShouldSetResponder = () => true;
 
   onLayout = (layout: Object) => {
     this.score &&
@@ -41,6 +40,9 @@ export default class ScoreRating extends Component<PropsType, *> {
         this.setState({ scoreX: pageX, scoreWidth: width });
       });
   };
+
+  _enableScroll = () =>
+    this.props.onChangeFinish && this.props.onChangeFinish();
 
   _updateChangeValue = (evt: Object) => {
     const x = evt.nativeEvent.pageX - this.state.scoreX;
@@ -82,6 +84,7 @@ export default class ScoreRating extends Component<PropsType, *> {
         onLayout={this.onLayout}
         onStartShouldSetResponder={this._onShouldSetResponder}
         onMoveShouldSetResponder={this._onShouldSetResponder}
+        onResponderRelease={this._enableScroll}
         onResponderGrant={this._updateChangeValue}
         onResponderMove={this._updateChangeValue}
       >
