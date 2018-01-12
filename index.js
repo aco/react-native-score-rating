@@ -5,12 +5,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 
 type PropsType = {
-  maximum: number,
-  rating: number,
-  spacing: number,
+  maximum?: number,
+  rating?: number,
+  spacing?: number,
   onChangeValue: (index: number) => {},
   renderItem: any => any,
-  containerStyle: Object,
+  containerStyle?: Object,
 };
 
 export default class ScoreRating extends Component<PropsType, *> {
