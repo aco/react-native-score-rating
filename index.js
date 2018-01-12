@@ -1,54 +1,62 @@
-import React from 'react';
+// @flow
 
-import {
-  View,
-  StyleSheet
-} from 'react-native';
+import React, { Component } from 'react';
 
-export default class ScoreRating extends React.Component {
+import { View, StyleSheet, Dimensions } from 'react-native';
+
+type PropsType = {
+  maximum: number,
+  rating: number,
+  spacing: number,
+  onChangeValue: (index: number) => {},
+  renderItem: any => any,
+  containerStyle: Object,
+};
+
+export default class ScoreRating extends Component<PropsType, *> {
   static defaultProps = {
     maximum: 5,
     rating: 0,
-
     spacing: 10,
-
-    onChangeValue: (index) => {},
+    onChangeValue: (index: number) => {},
   };
 
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      ...this.props
-    };
-  }
+  score = null;
 
-  _onLayout = (layout) => { // compute rating icon size
-    this.setState({
-      containerLayout: layout.nativeEvent.layout,
-      size: layout.nativeEvent.layout.width
-    });
+  constructor(props: PropsType) {
+    super(props);
+
+    this.state = {
+      ...this.props,
+    };
   }
 
   _onShouldSetResponder() {
     return true;
   }
 
-  _updateChangeValue = (evt) => {
-    let rating = Math.ceil((evt.nativeEvent.pageX - this.state.containerLayout.x) / 
-      (this.state.size + this.props.spacing));
+  onLayout = (layout: Object) => {
+    this.score &&
+      this.score.measure((x, y, width, height, pageX, pageY) => {
+        this.setState({ scoreX: pageX, scoreWidth: width });
+      });
+  };
 
-    if(rating < 0)
-      rating = 0;
-    else if (rating > this.state.maximum)
-      rating = this.state.maximum;
-    
+  _updateChangeValue = (evt: Object) => {
+    const x = evt.nativeEvent.pageX - this.state.scoreX;
+    const propotion = x / this.state.scoreWidth;
+
+    let rating = Math.ceil(5 * propotion);
+
+    if (rating < 0) rating = 0;
+    else if (rating > this.state.maximum) rating = this.state.maximum;
+
     this.setState({
-      rating
+      rating,
     });
-    
+
     this.props.onChangeValue(rating);
-  }
+  };
 
   render() {
     let icons = [];
@@ -58,40 +66,35 @@ export default class ScoreRating extends React.Component {
         ...this.props.containerStyle,
       };
 
-      if (i < this.state.maximum - 1)
-        styles.marginRight = this.props.spacing;
-        
+      if (i < this.state.maximum - 1) styles.marginRight = this.props.spacing;
+
       icons.push(
-        <View
-          key={i}
-          style={styles}
-          onLayout={i < 1 ? this._onLayout : null}
-        >
+        <View key={i} style={styles}>
           {this.props.renderItem(i < this.state.rating)}
-        </View>
+        </View>,
       );
     }
 
     return (
       <View
+        ref={score => (this.score = score)}
         style={styles.container}
-        
+        onLayout={this.onLayout}
         onStartShouldSetResponder={this._onShouldSetResponder}
         onMoveShouldSetResponder={this._onShouldSetResponder}
-        
         onResponderGrant={this._updateChangeValue}
         onResponderMove={this._updateChangeValue}
       >
         {icons}
       </View>
-    )
+    );
   }
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  }
-})
+  },
+});
