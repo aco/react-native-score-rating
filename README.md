@@ -6,15 +6,6 @@ A flexible, lightweight star rating component for React Native. Unlike others, t
 
 The component responds to drags and not just clicks, icon boundaries are computed automatically.
 
-
-## Installation
-```sh
-npm i -S react-native-score-rating
-```
-Component is entirely JS, no linking required.
-
-
-
 ## Demo
 <img src="https://i.imgur.com/YtC6xgS.gif" />
 
