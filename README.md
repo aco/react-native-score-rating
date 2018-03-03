@@ -13,7 +13,7 @@ The component responds to drags and not just clicks, icon boundaries are compute
 ## Usage
 
 ```js
-import React, { Component } from 'react';
+import React from 'react';
 
 import {
   View,
@@ -43,7 +43,7 @@ export class Demo extends React.Component {
             })
           }
 
-          renderItem={(active) =>
+          renderItem={active =>
             <Text color={active ? Colors.yellow20 : Colors.dark20} icon>{Icons.star}</Text>
           }
         />
