@@ -53,7 +53,7 @@ export class Demo extends React.Component {
 }
 
 ```
-Note: Text is a custom component to demonstrate coloring. You have absolute control in the icon rendered -- styling included.
+Note: Text is a custom component to demonstrate coloring. You have absolute control in the icon rendered -- styling included. It can be any range of components you wish.
 
 
 
@@ -63,7 +63,7 @@ Note: Text is a custom component to demonstrate coloring. You have absolute cont
 | rating       | Current score  | 0             |
 | maximum      | Maximum rating/"star count"  | 5|
 | spacing      | Spacing between each component*  | 10|
-| onChangeValue      | Func:bool=>JSX to render a single score/rating component  | Not supplied - requires implementation |
+| onChangeValue      | Func:bool=>React.Element to render a single score/rating component  | Not supplied - requires implementation |
 
 \* Spacing is applied as a right margin of all inner ratings.
 
