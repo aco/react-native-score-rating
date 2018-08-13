@@ -68,5 +68,4 @@ Note: Text is a custom component to demonstrate coloring. You have absolute cont
 \* Spacing is applied as a right margin of all inner ratings.
 
 ## License
-
-The MIT License.
+MIT
